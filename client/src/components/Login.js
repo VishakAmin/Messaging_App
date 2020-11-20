@@ -18,6 +18,8 @@ const Login = ({ onIdSubmit }) => {
         <Container className="align-items-center d-flex" style={{ height: "100vh" }}>
             <Form onSubmit={handleSubmit} className="w-100">
                 <Form.Group >
+                    <h1>Messaging Application</h1>
+                    <h4>Create A New ID, Share With your Friends And Chat Freely..!</h4>
                     <Form.Label>Enter Your Id:</Form.Label>
                     <Form.Control type="text" ref={idRef} required></Form.Control>
                 </Form.Group>

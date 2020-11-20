@@ -1,14 +1,13 @@
 import React, { useState } from 'react'
 import { Modal, Form, Button } from 'react-bootstrap';
-import { useContacts } from '../components/context/ContactsProvider';
-import { useConversation } from "../components/context/ConversationProvider"
+import { useContacts } from '../contexts/ContactsProvider';
+import { useConversations } from "../contexts/ConversationsProvider"
 
 
-function NewConversationModal({ closeModal }) {
+export default function NewConversationModal({ closeModal }) {
     const [selectedContactIds, setselectedContactIds] = useState([]);
     const { contacts } = useContacts()
-    const { createConversation } = useConversation();
-
+    const { createConversation } = useConversations();
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -27,11 +26,8 @@ function NewConversationModal({ closeModal }) {
             }
         })
     }
-    console.log(selectedContactIds);
 
     return (
-
-
         <>
             <Modal.Header closeButton>Create a Convesation</Modal.Header>
             <Modal.Body>
@@ -47,10 +43,7 @@ function NewConversationModal({ closeModal }) {
 
                         </Form.Group>
                     ))}
-
-
                     <Button type="submit">Create</Button>
-
                 </Form>
             </Modal.Body>
 
@@ -58,4 +51,3 @@ function NewConversationModal({ closeModal }) {
     )
 }
 
-export default NewConversationModal;
