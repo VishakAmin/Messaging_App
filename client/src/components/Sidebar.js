@@ -47,7 +47,7 @@ const Sidebar = ({ id }) => {
                         <Nav.Link eventKey={CONTACT_KEY}>Contacts</Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link eventKey={SETTINGS_KEY}>Settings</Nav.Link>
+                        <Nav.Link eventKey={SETTINGS_KEY}>Logout</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <Tab.Content className="border-right overflow-auto flex-grow-1">

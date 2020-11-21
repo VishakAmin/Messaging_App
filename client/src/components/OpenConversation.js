@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react'
 import { Form, InputGroup, Button } from 'react-bootstrap'
 import { useConversations } from '../contexts/ConversationsProvider';
+import Picker from "emoji-picker-react";
+import ReactEmoji from "react-emoji";
 
 
 
@@ -8,6 +10,7 @@ import { useConversations } from '../contexts/ConversationsProvider';
 const OpenConversation = () => {
     const [text, setText] = useState('')
     const { sendMessage, selectedConversation } = useConversations();
+    const [emojiBoard, setEmojiBoard] = useState(false);
 
     const setRef = useCallback(node => {
         if (node) {
@@ -30,6 +33,17 @@ const OpenConversation = () => {
     // , ]
     // })
 
+
+    const onEmojiClick = (event, emojiObject) => {
+        setText((text) => text.concat(emojiObject.emoji));
+        console.log(emojiObject);
+    }
+
+    const closeEmoji = () => {
+        if (emojiBoard === true) {
+            setEmojiBoard(!emojiBoard)
+        }
+    }
     return (
         <div className="d-flex flex-column flex-grow-1">
             <div className="flex-grow-1 overflow-auto">
@@ -55,17 +69,22 @@ const OpenConversation = () => {
                 </div>
             </div>
             <Form onSubmit={handleSubmit}>
+                {emojiBoard && <Picker onEmojiClick={onEmojiClick} />}
                 <Form.Group className="m-2">
                     <InputGroup>
                         <Form.Control
                             as="textarea"
                             required
+                            placeholder="Type your message here..."
                             value={text}
                             onChange={e => setText(e.target.value)}
                             style={{ height: '75px', resize: 'none' }}
                         />
+                        <Button className="m-1 material-icons button" onClick={() => setEmojiBoard(!emojiBoard)}>
+                            &#128512;                        </Button>
                         <InputGroup.Append>
-                            <Button type="submit">Send</Button>
+                            <Button className="m-1" type="submit" onClick={() => closeEmoji()} >
+                                Send</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form.Group>

@@ -1,6 +1,8 @@
 import React, { useRef } from 'react'
 import { Container, Form, Button } from 'react-bootstrap';
 import { v4 as uuidV4 } from 'uuid';
+import ParticlesBg from "particles-bg";
+
 
 const Login = ({ onIdSubmit }) => {
     const idRef = useRef()
@@ -15,7 +17,9 @@ const Login = ({ onIdSubmit }) => {
     }
 
     return (
+
         <Container className="align-items-center d-flex" style={{ height: "100vh" }}>
+            <ParticlesBg color="#b1b1b1" num={80} type="cobweb" bg={true} />
             <Form onSubmit={handleSubmit} className="w-100">
                 <Form.Group >
                     <h1>Messaging Application</h1>
